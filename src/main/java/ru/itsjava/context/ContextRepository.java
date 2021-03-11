@@ -3,10 +3,12 @@ package ru.itsjava.context;
 import lombok.AllArgsConstructor;
 import org.h2.tools.Console;
 import org.springframework.stereotype.Component;
+import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 import ru.itsjava.services.UsersService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @AllArgsConstructor
 @Component
@@ -28,6 +30,15 @@ public class ContextRepository {
         System.out.println(usersService.getUseById(id));
     }
     public void getThemeByIdUsers(long idUser){
-        System.out.println(usersService.getThemeByIdUsers(idUser));
+        List<String> list = usersService.getThemeByIdUsers(idUser);
+        for (String s : list){
+            System.out.println(s);
+        }
+    }
+    public void getThemeByIdUsers2(long idUser){
+        List<Themes> list = usersService.getThemeByIdUsers2(idUser);
+        for (Themes t : list){
+            System.out.println(t.getLetterName());
+        }
     }
 }

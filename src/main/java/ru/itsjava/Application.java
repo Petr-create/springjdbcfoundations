@@ -18,6 +18,7 @@ public class Application {
         param.getUseById(3L);
         param.countAllUsers();
         param.getThemeByIdUsers(2L);
+        param.getThemeByIdUsers2(2L);
 
 //        System.out.println("Количество сообщений: " + context.getBean(UsersService.class).countMessagesByName("Виталий"));
 //        context.getBean(UsersService.class).insertUser(new Users("Валерий", "valera@yandex.ru", "10110"));

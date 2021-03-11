@@ -6,6 +6,8 @@ import ru.itsjava.dao.UsersJdbc;
 import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService{
@@ -33,7 +35,12 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public String getThemeByIdUsers(long idUser) {
+    public List<String> getThemeByIdUsers(long idUser) {
         return usersJdbc.getThemeByIdUsers(idUser);
+    }
+
+    @Override
+    public List<Themes> getThemeByIdUsers2(long idUser) {
+        return usersJdbc.getThemeByIdUsers2(idUser);
     }
 }

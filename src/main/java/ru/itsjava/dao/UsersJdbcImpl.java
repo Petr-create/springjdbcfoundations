@@ -11,7 +11,9 @@ import ru.itsjava.domain.Users;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,20 +25,22 @@ public class UsersJdbcImpl implements UsersJdbc{
     private final JdbcOperations jdbcOperations;
     private final NamedParameterJdbcOperations paramsjdbcOperations;
 
-//    @Override
-//    public Themes getThemeByIdUsers(long idUser) {
-//        System.out.println(getUseById(idUser));
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("idUser", idUser);
-//        return paramsjdbcOperations.queryForObject("select letterName from theme where idUser = :idUser",
-//                params, new ThemesMapper());
-//    }
+    @Override
+    public List<Themes> getThemeByIdUsers2(long idUser) {
+        System.out.println();
+        System.out.println(getUseById(idUser));
+        Map<String, Long> params = new HashMap<>();
+        params.put("idUser", idUser);
+        return paramsjdbcOperations.query("select letterName from theme where idUser = :idUser",
+                params, new ThemesMapper());
+    }
 
 
     @Override
-    public String getThemeByIdUsers(long idUser) {
+    public List<String> getThemeByIdUsers(long idUser) {
+        System.out.println();
         System.out.println(getUseById(idUser));
-        return jdbcOperations.queryForObject("select letterName from theme where idUser = '" + idUser + "'",
+        return jdbcOperations.queryForList("select letterName from theme where idUser = '" + idUser + "'",
                 String.class);
     }
 
