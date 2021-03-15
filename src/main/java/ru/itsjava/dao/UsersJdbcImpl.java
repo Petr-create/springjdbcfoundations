@@ -26,12 +26,35 @@ public class UsersJdbcImpl implements UsersJdbc{
     private final NamedParameterJdbcOperations paramsjdbcOperations;
 
     @Override
+    public void insertTheme(Themes theme) {
+        jdbcOperations.update("insert into theme (letterName, idUser) values (?,?)", theme.getLetterName(), theme.getIdUser());
+    }
+
+    @Override
+    public void insertMessage(Messages message) {
+        jdbcOperations.update("insert into messages (textMessage, idTheme, idUser) values (?,?,?)", message.getTextMessage(),
+                message.getIdThemes(), message.getIdUsers());
+    }
+
+    @Override
+    public List<Messages> getMessageByIdUser(long idUser, long idTheme) {
+        System.out.println();
+        System.out.println(getUseById(idUser));
+        System.out.println(getThemeByIdUsers2(idUser));
+        Map<String, Long> params = new HashMap<>();
+        params.put("idUser", idUser);
+        params.put("idTheme", idTheme);
+        return paramsjdbcOperations.query("select textMessage, idTheme, idUser from messages where idUser = :idUser AND idTheme = :idTheme",
+                params, new MessagesMapper());
+    }
+
+    @Override
     public List<Themes> getThemeByIdUsers2(long idUser) {
         System.out.println();
         System.out.println(getUseById(idUser));
         Map<String, Long> params = new HashMap<>();
         params.put("idUser", idUser);
-        return paramsjdbcOperations.query("select letterName from theme where idUser = :idUser",
+        return paramsjdbcOperations.query("select letterName, idUser from theme where idUser = :idUser",
                 params, new ThemesMapper());
     }
 
@@ -95,8 +118,8 @@ public class UsersJdbcImpl implements UsersJdbc{
         public Messages mapRow(ResultSet resultSet, int i) throws SQLException {
             return new Messages(
                             resultSet.getString("textMessage"),
-                            resultSet.getLong("idUsers"),
-                            resultSet.getLong("idThemes")
+                            resultSet.getLong("idTheme"),
+                            resultSet.getLong("idUser")
             );
         }
     }

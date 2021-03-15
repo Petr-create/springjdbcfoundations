@@ -1,8 +1,9 @@
 package ru.itsjava.context;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.h2.tools.Console;
 import org.springframework.stereotype.Component;
+import ru.itsjava.domain.Messages;
 import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 import ru.itsjava.services.UsersService;
@@ -10,10 +11,10 @@ import ru.itsjava.services.UsersService;
 import java.sql.SQLException;
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Component
 public class ContextRepository {
-    private UsersService usersService;
+    private final UsersService usersService;
 
     public void countMessages(String name) throws SQLException {
         System.out.println("Количество сообщений у пользователей по имени " + name + ": "
@@ -40,5 +41,20 @@ public class ContextRepository {
         for (Themes t : list){
             System.out.println(t.getLetterName());
         }
+    }
+
+    public void getMessageByIdUser(long idUser, long idTheme){
+        List<Messages> list = usersService.getMessageByIdUser(idUser, idTheme);
+        for (Messages t : list){
+            System.out.println(t.getTextMessage());
+        }
+    }
+
+    public void insertMessage(Messages messages){
+        usersService.insertMessage(messages);
+    }
+
+    public void insertTheme(Themes theme){
+        usersService.insertTheme(theme);
     }
 }

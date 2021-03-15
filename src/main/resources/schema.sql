@@ -21,3 +21,5 @@ CREATE TABLE messages(
 );
 
 ALTER TABLE theme ADD FOREIGN KEY (idUser) REFERENCES users(id);
+ALTER TABLE messages ADD FOREIGN KEY (idTheme) REFERENCES theme(id);
+ALTER TABLE messages ADD FOREIGN KEY (idUser) REFERENCES users(id);

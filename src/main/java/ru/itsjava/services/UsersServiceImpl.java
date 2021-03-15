@@ -3,6 +3,7 @@ package ru.itsjava.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itsjava.dao.UsersJdbc;
+import ru.itsjava.domain.Messages;
 import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 
@@ -42,5 +43,20 @@ public class UsersServiceImpl implements UsersService{
     @Override
     public List<Themes> getThemeByIdUsers2(long idUser) {
         return usersJdbc.getThemeByIdUsers2(idUser);
+    }
+
+    @Override
+    public List<Messages> getMessageByIdUser(long idUser, long idTheme) {
+        return usersJdbc.getMessageByIdUser(idUser, idTheme);
+    }
+
+    @Override
+    public void insertMessage(Messages message) {
+         usersJdbc.insertMessage(message);
+    }
+
+    @Override
+    public void insertTheme(Themes theme) {
+        usersJdbc.insertTheme(theme);
     }
 }

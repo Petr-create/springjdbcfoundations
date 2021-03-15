@@ -3,6 +3,8 @@ package ru.itsjava;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.itsjava.context.ContextRepository;
+import ru.itsjava.domain.Messages;
+import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 
 import java.sql.SQLException;
@@ -19,6 +21,9 @@ public class Application {
         param.countAllUsers();
         param.getThemeByIdUsers(2L);
         param.getThemeByIdUsers2(2L);
+        param.getMessageByIdUser(2L, 1L);
+        param.insertMessage(new Messages("Привет Мир!!!", 1, 3));
+        param.insertTheme(new Themes("Тема Тема Тема", 3));
 
 //        System.out.println("Количество сообщений: " + context.getBean(UsersService.class).countMessagesByName("Виталий"));
 //        context.getBean(UsersService.class).insertUser(new Users("Валерий", "valera@yandex.ru", "10110"));
