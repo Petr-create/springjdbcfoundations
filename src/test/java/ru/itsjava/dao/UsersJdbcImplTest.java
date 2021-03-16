@@ -9,6 +9,9 @@ import ru.itsjava.domain.Messages;
 import ru.itsjava.domain.Themes;
 import ru.itsjava.domain.Users;
 
+import java.util.Arrays;
+import java.util.List;
+
 @JdbcTest
 @Import(UsersJdbcImpl.class)
 public class UsersJdbcImplTest {
@@ -32,6 +35,7 @@ public class UsersJdbcImplTest {
         usersJdbc.insertTheme(themes);
         Messages messages = new Messages("TestMessage", 1L, 1L);
         usersJdbc.insertMessage(messages);
-        Assertions.assertEquals("[" + messages + "]", usersJdbc.getMessageByIdUser(1, 1));
+        List<Messages> list = Arrays.asList(messages);
+        Assertions.assertEquals(list, usersJdbc.getMessageByIdUser(1, 1));
     }
 }
