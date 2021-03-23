@@ -32,4 +32,5 @@ public class UserServiceImpl implements UserService {
     public void countAllUsers() {
         System.out.println("Все пользователи: " + userJdbc.countAllUsers());
     }
+
 }

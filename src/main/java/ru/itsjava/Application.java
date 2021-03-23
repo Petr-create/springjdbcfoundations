@@ -27,5 +27,6 @@ public class Application {
         System.out.println(p.insert(new Theme("Привет Мир!", 1L)));
 
         Console.main();
+
     }
 }

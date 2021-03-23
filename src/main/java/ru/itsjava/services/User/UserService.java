@@ -10,4 +10,5 @@ public interface UserService {
     void getUserById(long id);
 
     void countAllUsers();
+
 }
