@@ -26,4 +26,5 @@ public class MessageRepositorySimpleJDBCInsert {
         Number newId = simpleJdbcInsert.executeAndReturnKey(parameters);
         return (long) newId;
     }
+
 }

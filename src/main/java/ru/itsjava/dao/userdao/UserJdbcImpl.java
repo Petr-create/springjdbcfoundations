@@ -26,10 +26,11 @@ public class UserJdbcImpl implements UserJdbc {
     private Logger logger = Logger.getLogger(UserJdbcImpl.class);
 
     @Override
-    public void insertUser(User user) {
+    public long insertUser(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcOperations.update("insert into users (name, email, password) values (?,?,?)", user.getName(),
-                user.getEmail(), user.getPassword());
+                user.getEmail(), user.getPassword(), keyHolder);
+        return (long) keyHolder.getKey();
     }
 
     @Override
@@ -55,6 +56,4 @@ public class UserJdbcImpl implements UserJdbc {
             );
         }
     }
-
-
 }

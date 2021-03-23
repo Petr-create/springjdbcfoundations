@@ -8,4 +8,5 @@ public interface ThemeJdbc {
     List<String> getThemeByIdUsers(long idUser);
     List<Theme> getThemeByIdUserWithMap(long idUser);
     void insertTheme(Theme theme);
+
 }

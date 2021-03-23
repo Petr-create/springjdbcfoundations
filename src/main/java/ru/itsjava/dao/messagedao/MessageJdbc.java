@@ -8,4 +8,5 @@ public interface MessageJdbc {
     int countMessagesByName(String name);
     List<Message> getMessageByIdUserAndByIdTheme(long idUser, long idTheme);
     void insertMessage(Message message);
+
 }

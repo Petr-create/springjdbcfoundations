@@ -10,4 +10,5 @@ public interface ThemeService {
     void getThemeByIdUserWithMap(long idUser);
 
     void insertTheme(Theme theme);
+
 }

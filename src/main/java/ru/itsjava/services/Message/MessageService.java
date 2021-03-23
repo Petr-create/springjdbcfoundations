@@ -12,4 +12,5 @@ public interface MessageService {
     void insertMessage(Message message);
 
     void getMessageByIdUserAndByIdTheme(long idUser, long idTheme);
+
 }

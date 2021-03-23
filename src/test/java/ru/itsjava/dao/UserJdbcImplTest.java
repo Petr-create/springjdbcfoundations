@@ -44,4 +44,5 @@ public class UserJdbcImplTest {
         //List<Message> list = Arrays.asList(message);
         Assertions.assertEquals(message, messageJdbc.getMessageByIdUserAndByIdTheme(1, 1).get(0));
     }
+
 }

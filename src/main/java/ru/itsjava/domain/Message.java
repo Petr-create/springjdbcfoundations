@@ -10,4 +10,5 @@ public class Message {
     private final String textMessage;
     private final long idUsers;
     private final long idThemes;
+
 }

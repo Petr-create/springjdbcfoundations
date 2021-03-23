@@ -20,7 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertUser(User user) {
-        userJdbc.insertUser(user);
+        System.out.println();
+        System.out.println();
+        System.out.println(userJdbc.insertUser(user));
     }
 
     @Override
