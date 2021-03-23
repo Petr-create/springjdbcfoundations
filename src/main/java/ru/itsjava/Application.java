@@ -1,11 +1,13 @@
 package ru.itsjava;
 
+import org.h2.tools.Console;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.itsjava.context.ContextRepository;
-import ru.itsjava.domain.Messages;
-import ru.itsjava.domain.Themes;
-import ru.itsjava.domain.Users;
+import ru.itsjava.dao.keyholder.MessageRepositorySimpleJDBCInsert;
+import ru.itsjava.domain.Theme;
+import ru.itsjava.services.Message.MessageService;
+import ru.itsjava.services.Theme.ThemeService;
+import ru.itsjava.services.User.UserService;
 
 import java.sql.SQLException;
 
@@ -14,20 +16,16 @@ import java.sql.SQLException;
 public class Application {
     public static void main(String[] args) throws SQLException {
         var context = SpringApplication.run(Application.class);
-        var param = context.getBean(ContextRepository.class);
-        param.countMessages("Виталий");
-        param.insertUser(new Users("Валерий", "valera@yandex.ru", "10110"));
-        param.getUseById(3L);
-        param.countAllUsers();
-        param.getThemeByIdUsers(2L);
-        param.getThemeByIdUsers2(2L);
-        param.getMessageByIdUser(2L, 1L);
-        param.insertMessage(new Messages("Привет Мир!!!", 1, 3));
-        param.insertTheme(new Themes("Тема Тема Тема", 3));
+        var paramMessage = context.getBean(MessageService.class);
+        var paramUser = context.getBean(UserService.class);
+        var paramTheme = context.getBean(ThemeService.class);
+        paramUser.createUser();
+        paramMessage.createMessage();
+        paramTheme.createTheme();
 
-//        System.out.println("Количество сообщений: " + context.getBean(UsersService.class).countMessagesByName("Виталий"));
-//        context.getBean(UsersService.class).insertUser(new Users("Валерий", "valera@yandex.ru", "10110"));
-//        System.out.println(context.getBean(UsersService.class).getUseById(3L));
-//        Console.main();
+        var p = context.getBean(MessageRepositorySimpleJDBCInsert.class);
+        System.out.println(p.insert(new Theme("Привет Мир!", 1L)));
+
+        Console.main();
     }
 }

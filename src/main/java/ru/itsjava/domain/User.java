@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Data
-public class Users {
+public class User {
     private long id;
     private final String name;
     private final String email;

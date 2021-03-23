@@ -5,9 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Data
-public class Messages {
+public class Theme {
     private long id;
-    private final String textMessage;
-    private final long idUsers;
-    private final long idThemes;
+    private final String letterName;
+    private final long idUser;
 }
